@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/run.dir/main.cpp.o CMakeFiles/run.dir/sourse/Predictor.cpp.o CMakeFiles/run.dir/sourse/Interface.cpp.o CMakeFiles/run.dir/sourse/Abstract.cpp.o -o run

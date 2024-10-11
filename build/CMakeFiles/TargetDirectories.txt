@@ -1,0 +1,3 @@
+/home/albert/mipt/C++Projects/ChepkunovAA_1C_exam/build/CMakeFiles/run.dir
+/home/albert/mipt/C++Projects/ChepkunovAA_1C_exam/build/CMakeFiles/edit_cache.dir
+/home/albert/mipt/C++Projects/ChepkunovAA_1C_exam/build/CMakeFiles/rebuild_cache.dir
