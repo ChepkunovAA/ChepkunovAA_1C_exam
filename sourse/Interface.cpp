@@ -34,6 +34,7 @@ void ConsoleInterface::RequestProcessing() {
     if (word == "-") {
       mode =  Mode::AddToPrefix;
       prefix = "";
+      std::cout << "Префикс сброшен\n";
       continue;
     }
     if (word == "+") {
