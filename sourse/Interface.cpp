@@ -10,7 +10,7 @@ ConsoleInterface::ConsoleInterface(Predictor& predictor) :  Interface{predictor}
   std::string word;
   while (iss >> word) {
       try {
-        predictor.AddWord(word);
+        predictor_ptr_->AddWord(word);
       } catch (const char* error_message) {
         std::cout << "Ошибка при записи слова " << word << "! " << error_message;
       }
@@ -19,7 +19,7 @@ ConsoleInterface::ConsoleInterface(Predictor& predictor) :  Interface{predictor}
 
 void ConsoleInterface::RequestProcessing() {
   std::string prefix = "";
-  std::cout << "Введите префикс. Далее, для добавления нового слова введите перед ним +, "
+  std::cout << "Введите префикс. Далее, для добавления нового текста введите перед ним +, "
                         "для сброса текущего префикса нажмите -, для дополнения текущего префикса "
                         "введите символы дополнения. Для выхода введите 0.\n";
   Mode mode = Mode::AddToPrefix;
@@ -39,7 +39,6 @@ void ConsoleInterface::RequestProcessing() {
     }
     if (word == "+") {
       mode = Mode::NewWord;
-      iss >> word;
     }
     try {
       if (mode ==  Mode::AddToPrefix) {
@@ -47,9 +46,15 @@ void ConsoleInterface::RequestProcessing() {
         std::cout << "Вероятно это " << prediction << '\n';
         prefix += word;
       } else {
-          predictor_ptr_->AddWord(word);
-          mode = Mode::AddToPrefix;
-          std::cout << "Слово \"" << word << "\" добавлено!\n";
+        while (iss >> word) {
+          try {
+            predictor_ptr_->AddWord(word);
+          } catch (const char* error_message) {
+            std::cout << "Ошибка при записи слова " << word << "! " << error_message;
+          }
+        }
+        mode = Mode::AddToPrefix;
+        std::cout << "Добавлено!\n";
       }
     } catch (const char* error_message) {
         std::cout << "Ошибка! " << error_message;
